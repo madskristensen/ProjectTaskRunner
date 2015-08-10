@@ -3,7 +3,7 @@
 Adds support for DNX scripts in Visual Studio 2015's
 Task Runner Explorer.
 
-[![Build status](https://ci.appveyor.com/api/projects/status/2cohf1g6n0ii7imq?svg=true)](https://ci.appveyor.com/project/madskristensen/npmtaskrunner)
+[![Build status](https://ci.appveyor.com/api/projects/status/v2l19gi8n12nvh86?svg=true)](https://ci.appveyor.com/project/madskristensen/projecttaskrunner)
 
 Download the extension at the
 [VS Gallery](https://visualstudiogallery.msdn.microsoft.com/8f2f2cbc-4da5-43ba-9de2-c9d08ade4941)
