@@ -27,13 +27,13 @@ namespace ProjectTaskRunner
 
         public async Task<ITaskRunnerConfig> ParseConfig(ITaskRunnerCommandContext context, string configPath)
         {
-            ITaskRunnerNode hierarchy = LoadHierarchy(configPath);
-
-            if (!hierarchy.Children.Any() && !hierarchy.Children.First().Children.Any())
-                return null;
-
             return await Task.Run(() =>
             {
+                ITaskRunnerNode hierarchy = LoadHierarchy(configPath);
+
+                if (!hierarchy.Children.Any() && !hierarchy.Children.First().Children.Any())
+                    return null;
+
                 return new TaskRunnerConfig(context, hierarchy, _icon);
             });
         }
