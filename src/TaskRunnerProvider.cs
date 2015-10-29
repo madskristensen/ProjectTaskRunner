@@ -77,6 +77,8 @@ namespace ProjectTaskRunner
                 if (!hierarchy.Children.Any())// && !hierarchy.Children.First().Children.Any())
                     return null;
 
+                Telemetry.TrackEvent("Tasks loaded");
+
                 return new TaskRunnerConfig(this, context, hierarchy, _icon);
             });
         }

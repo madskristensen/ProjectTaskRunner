@@ -2,6 +2,7 @@
 using System.Linq;
 using System.IO;
 using Newtonsoft.Json.Linq;
+using System;
 
 namespace ProjectTaskRunner
 {
@@ -29,10 +30,10 @@ namespace ProjectTaskRunner
                         dic.Add(child.Name, new[] { child.Value.ToString().Trim('"') });
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                Logger.Log(ex);
                 return null;
-                // TODO: Implement logger
             }
 
             return dic;
