@@ -7,11 +7,18 @@ using Newtonsoft.Json.Linq;
 
 namespace ProjectTaskRunner.Helpers
 {
-    public static class BindingsPersister
+    internal class BindingsPersister
     {
         private const string BindingsName = Constants.ELEMENT_NAME;
 
-        public static string Load(string configPath)
+        private TaskRunnerProvider _provider;
+
+        public BindingsPersister(TaskRunnerProvider provider)
+        {
+            _provider = provider;
+        }
+
+        public string Load(string configPath)
         {
             IVsTextView configTextView = TextViewUtil.FindTextViewFor(configPath);
             ITextUtil textUtil;
@@ -37,6 +44,11 @@ namespace ProjectTaskRunner.Helpers
                 foreach (JProperty property in bindings.Properties())
                 {
                     string[] tasks = property.Value.Values<string>().ToArray();
+                    for (int i = 0; i < tasks.Length; ++i)
+                    {
+                        tasks[i] = _provider.GetDynamicName(tasks[i]);
+                    }
+
                     bindingsElement.SetAttributeValue(property.Name, string.Join(",", tasks));
                 }
 
@@ -46,7 +58,7 @@ namespace ProjectTaskRunner.Helpers
             return "<binding />";
         }
 
-        public static bool Save(string configPath, string bindingsXml)
+        public bool Save(string configPath, string bindingsXml)
         {
             XElement bindingsXmlObject = XElement.Parse(bindingsXml);
             JObject bindingsXmlBody = JObject.Parse(@"{}");
@@ -167,7 +179,10 @@ namespace ProjectTaskRunner.Helpers
 
             return success;
         }
+    }
 
+    public static class TextUtilExtensions2
+    {
         public static void GetExtentInfo(this ITextUtil textUtil, int startIndex, int length, out int startLine, out int startLineOffset, out int endLine, out int endLineOffset)
         {
             textUtil.Reset();
@@ -182,8 +197,9 @@ namespace ProjectTaskRunner.Helpers
 
             //We passed the line we want to be on, so back up
             int positionAtEndOfPreviousLine = charCount - lineCharCount;
-            startLineOffset = startIndex - positionAtEndOfPreviousLine;
             startLine = lineNumber - 1;
+            startLineOffset = startIndex - positionAtEndOfPreviousLine;
+
 
             while (textUtil.TryReadLine(out line) && charCount < startIndex + length)
             {

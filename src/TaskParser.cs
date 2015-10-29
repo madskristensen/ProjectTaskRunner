@@ -16,7 +16,10 @@ namespace ProjectTaskRunner
                 string document = File.ReadAllText(configPath);
                 JObject root = JObject.Parse(document);
 
-                var children = root["scripts"].Children<JProperty>();
+                var children = root["scripts"]?.Children<JProperty>();
+
+                if (children == null)
+                    return null;
 
                 foreach (var child in children)
                 {

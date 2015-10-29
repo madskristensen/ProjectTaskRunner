@@ -3,17 +3,17 @@ using Microsoft.VisualStudio.TaskRunnerExplorer;
 
 namespace ProjectTaskRunner.Helpers
 {
-    public class TaskRunnerConfig : TaskRunnerConfigBase
+    internal class TaskRunnerConfig : TaskRunnerConfigBase
     {
         private ImageSource _rootNodeIcon;
 
-        public TaskRunnerConfig(ITaskRunnerCommandContext context, ITaskRunnerNode hierarchy)
-            : base(context, hierarchy)
+        public TaskRunnerConfig(TaskRunnerProvider provider, ITaskRunnerCommandContext context, ITaskRunnerNode hierarchy)
+            : base(provider, context, hierarchy)
         {
         }
 
-        public TaskRunnerConfig(ITaskRunnerCommandContext context, ITaskRunnerNode hierarchy, ImageSource rootNodeIcon)
-            : this(context, hierarchy)
+        public TaskRunnerConfig(TaskRunnerProvider provider, ITaskRunnerCommandContext context, ITaskRunnerNode hierarchy, ImageSource rootNodeIcon)
+            : this(provider, context, hierarchy)
         {
             _rootNodeIcon = rootNodeIcon;
         }
