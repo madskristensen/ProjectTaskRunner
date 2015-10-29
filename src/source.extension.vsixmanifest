@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="ec768980-f2de-4db0-a6e2-5e57fa612ad5" Version="1.0" Language="en-US" Publisher="Mads Kristensen" />
+        <Identity Id="ec768980-f2de-4db0-a6e2-5e57fa612ad5" Version="1.1" Language="en-US" Publisher="Mads Kristensen" />
         <DisplayName>ASP.NET 5 Scripts Task Runner</DisplayName>
         <Description xml:space="preserve">Adds support for project.json's scripts in the Task Runner Explorer</Description>
         <License>Resources\LICENSE</License>
