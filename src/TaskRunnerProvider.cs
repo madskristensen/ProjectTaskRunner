@@ -74,10 +74,8 @@ namespace ProjectTaskRunner
             {
                 ITaskRunnerNode hierarchy = LoadHierarchy(configPath);
 
-                if (!hierarchy.Children.Any())// && !hierarchy.Children.First().Children.Any())
-                    return null;
-
-                Telemetry.TrackEvent("Tasks loaded");
+                //if (!hierarchy.Children.Any())
+                //    return null;
 
                 return new TaskRunnerConfig(this, context, hierarchy, _icon);
             });
@@ -94,10 +92,6 @@ namespace ProjectTaskRunner
             if (scripts == null)
                 return root;
 
-            TaskRunnerNode tasks = new TaskRunnerNode("Scripts");
-            tasks.Description = "Scripts specified in the \"scripts\" JSON element.";
-            root.Children.Add(tasks);
-
             foreach (var key in scripts.Keys.OrderBy(k => k))
             {
                 // Add zero width space
@@ -110,17 +104,17 @@ namespace ProjectTaskRunner
                     Description = string.Join(", ", scripts[key]),
                 };
 
-                foreach (string child in scripts[key])
-                {
-                    TaskRunnerNode childTask = new TaskRunnerNode(child, true)
-                    {
-                        Command = new TaskRunnerCommand(workingDirectory, "cmd.exe", "/c " + child),
-                    };
+                //foreach (string child in scripts[key])
+                //{
+                //    TaskRunnerNode childTask = new TaskRunnerNode(child, true)
+                //    {
+                //        Command = new TaskRunnerCommand(workingDirectory, "cmd.exe", "/c " + child),
+                //    };
 
-                    task.Children.Add(childTask);
-                }
+                //    task.Children.Add(childTask);
+                //}
 
-                tasks.Children.Add(task);
+                root.Children.Add(task);
             }
 
             return root;
