@@ -1,6 +1,6 @@
-## ASP.NET 5 Scripts Task Runner extension
+## .NET Core Task Runner extension
 
-Adds support for DNX scripts in Visual Studio 2015's
+Adds support for .NET Core scripts in Visual Studio 2015's
 Task Runner Explorer.
 
 [![Build status](https://ci.appveyor.com/api/projects/status/v2l19gi8n12nvh86?svg=true)](https://ci.appveyor.com/project/madskristensen/projecttaskrunner)
@@ -10,7 +10,7 @@ Download the extension at the
 or get the
 [nightly build](http://vsixgallery.com/extension/ec768980-f2de-4db0-a6e2-5e57fa612ad5/)
 
-### ASP.NET 5 scripts
+### .NET Core scripts
 
 Inside project.json it is possible to add custom scripts inside
 the "scripts" element.
